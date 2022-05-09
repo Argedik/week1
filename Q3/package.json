@@ -12,6 +12,11 @@
     "snarkjs": "^0.4.16"
   },
   "scripts": {
-    "test": ". scripts/bonus-compile.sh && node scripts/bonus-bump-solidity.js && npx hardhat test"
+    "compile:contracts": "npx hardhat compile --force",
+    "compile:circuits": "bash scripts/compile-circuits.sh",
+    "version:fix": "node scripts/bump-solidity",
+    "generate:proof": "bash scripts/generate-proof.sh",
+    "test": ". scripts/bonus-compile.sh && node scripts/bonus-bump-solidity.js && npx hardhat test",
+    "test:fullProof": "npm run compile:circuits && npm run version:fix && npm run generate:proof && npm run compile:contracts && npx hardhat test"
   }
 }
